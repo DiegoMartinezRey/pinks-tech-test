@@ -37,11 +37,13 @@ export default function Kanban() {
         title="En preparación"
         orders={orders.filter((i) => i.state === "IN_PROGRESS")}
         state="READY"
+        onClick={openModal}
       />
       <Column
         title="Listo"
         orders={orders.filter((i) => i.state === "READY")}
         state="DELIVERED"
+        onClick={openModal}
       />
       {isModalOpen ? <Modal onClose={closeModal} /> : <></>}
     </section>
