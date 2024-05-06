@@ -6,6 +6,7 @@ import s from "./Column.module.scss";
 export type ColumnProps = {
   orders: Array<Order>;
   title: string;
+  state: string;
   onClick?: (order: Order) => void;
 };
 
@@ -40,7 +41,7 @@ export default function Column(props: ColumnProps) {
               </div>
             ))}
           </div>
-          <button onClick={() => updateOrderStatus(order.id, "IN_PROGRESS")}>
+          <button onClick={() => updateOrderStatus(order.id, props.state)}>
             Next
           </button>
         </div>

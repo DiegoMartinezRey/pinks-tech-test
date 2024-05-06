@@ -10,6 +10,7 @@ export default function Kanban() {
       <Column
         title="Pendiente"
         orders={orders.filter((i) => i.state === "PENDING")}
+        state="IN_PROGRESS"
         // onClick={() =>
         //   alert(
         //     "mmmmm..., deberias de modificar esto! tenemos que hacer que las ordenes lleguen hasta listo y se entreguen!"
@@ -19,8 +20,13 @@ export default function Kanban() {
       <Column
         title="En preparación"
         orders={orders.filter((i) => i.state === "IN_PROGRESS")}
+        state="READY"
       />
-      <Column title="Listo" orders={[]} />
+      <Column
+        title="Listo"
+        orders={orders.filter((i) => i.state === "READY")}
+        state="DELIVERED"
+      />
     </section>
   );
 }
