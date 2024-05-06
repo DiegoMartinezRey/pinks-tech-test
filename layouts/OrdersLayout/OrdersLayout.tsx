@@ -1,7 +1,7 @@
 import Logo from "@/bases/Logo";
-import s from "./OrdersLayout.module.scss";
-import Riders from "@/components/Riders";
 import Kanban from "@/components/Kanban";
+import Riders from "@/components/Riders";
+import s from "./OrdersLayout.module.scss";
 
 export default function OrdersLayout() {
   return (

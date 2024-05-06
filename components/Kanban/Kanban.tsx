@@ -1,5 +1,6 @@
 import { useOrders } from "@/contexts/Orders.context";
 import Column from "../Column";
+import Modal from "../Modal";
 import s from "./Kanban.module.scss";
 
 export default function Kanban() {
@@ -27,6 +28,7 @@ export default function Kanban() {
         orders={orders.filter((i) => i.state === "READY")}
         state="DELIVERED"
       />
+      <Modal />
     </section>
   );
 }
