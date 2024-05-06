@@ -16,7 +16,17 @@ export class OrderOrchestrator {
       this.emit({
         id: getRandomId(),
         state: "PENDING",
-        items: [],
+        items: [
+          {
+            id: "1",
+            name: "burger",
+            image: "photo1",
+            price: {
+              currency: "€",
+              amount: 20,
+            },
+          },
+        ],
       });
       this.maxOrders--;
       if (this.maxOrders <= 0) {

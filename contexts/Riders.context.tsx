@@ -1,3 +1,5 @@
+import { Rider } from "@/dtos/Rider.dto";
+import { getRandomInterval } from "@/lib/utils";
 import {
   ReactNode,
   createContext,
@@ -6,8 +8,6 @@ import {
   useState,
 } from "react";
 import { useOrders } from "./Orders.context";
-import { getRandomInterval } from "@/lib/utils";
-import { Rider } from "@/dtos/Rider.dto";
 
 export type RidersContextProps = {
   riders: Array<Rider>;

@@ -1,5 +1,7 @@
-import s from "./Column.module.scss";
+import { useOrders } from "@/contexts/Orders.context";
 import { Order } from "@/dtos/Order.dto";
+import { useEffect } from "react";
+import s from "./Column.module.scss";
 
 export type ColumnProps = {
   orders: Array<Order>;
@@ -8,6 +10,12 @@ export type ColumnProps = {
 };
 
 export default function Column(props: ColumnProps) {
+  const { updateOrderStatus } = useOrders();
+
+  useEffect(() => {}, [props.orders]);
+
+  const setInfoOrders = () => {};
+
   return (
     <div className={s["pk-column"]}>
       <div className={s["pk-column__title"]}>
@@ -17,6 +25,7 @@ export default function Column(props: ColumnProps) {
         <div
           onClick={() => props.onClick && props.onClick(order)}
           className={s["pk-card"]}
+          key={order.id}
         >
           <div>
             <span>
@@ -24,10 +33,16 @@ export default function Column(props: ColumnProps) {
             </span>
           </div>
           <div>
+            <h3>{order.state}</h3>
             {order.items.map((item) => (
-              <div></div>
+              <div key={item.id}>
+                <h1>{item.name}</h1>
+              </div>
             ))}
           </div>
+          <button onClick={() => updateOrderStatus(order.id, "IN_PROGRESS")}>
+            Next
+          </button>
         </div>
       ))}
     </div>
