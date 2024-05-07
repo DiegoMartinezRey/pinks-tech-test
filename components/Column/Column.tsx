@@ -15,7 +15,11 @@ export default function Column(props: ColumnProps) {
 
   useEffect(() => {}, [props.orders]);
 
-  const setInfoOrders = () => {};
+  const updateOrderStatusButton =
+    (orderId: string) => (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      updateOrderStatus(orderId, props.state);
+    };
 
   return (
     <div className={s["pk-column"]}>
@@ -41,9 +45,7 @@ export default function Column(props: ColumnProps) {
               </div>
             ))}
           </div>
-          <button onClick={() => updateOrderStatus(order.id, props.state)}>
-            Next
-          </button>
+          <button onClick={updateOrderStatusButton(order.id)}>Next</button>
         </div>
       ))}
     </div>
