@@ -1,3 +1,4 @@
+import { useModals } from "@/contexts/Modals.context";
 import { useOrders } from "@/contexts/Orders.context";
 import { Order } from "@/dtos/Order.dto";
 import { useState } from "react";
@@ -7,18 +8,19 @@ import s from "./Kanban.module.scss";
 
 export default function Kanban() {
   const { orders } = useOrders();
+  const { isModalOpen, openModal, closeModal } = useModals();
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (order: Order) => {
-    setSelectedOrder(order);
-    setIsModalOpen(true);
-  };
+  // const openModal = (order: Order) => {
+  //   setSelectedOrder(order);
+  //   setIsModalOpen(true);
+  // };
 
-  const closeModal = () => {
-    setSelectedOrder(null);
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setSelectedOrder(null);
+  //   setIsModalOpen(false);
+  // };
 
   return (
     <section className={s["pk-kanban"]}>

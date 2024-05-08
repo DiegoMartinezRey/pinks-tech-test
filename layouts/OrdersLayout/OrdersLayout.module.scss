@@ -38,4 +38,14 @@
 .pk-layout__buttons {
   display: flex;
   gap: 20px;
+  padding: 10px;
+}
+.pk-button {
+  padding: 10px;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+.pk-button:hover {
+  cursor: pointer;
+  transform: scale(95%);
 }

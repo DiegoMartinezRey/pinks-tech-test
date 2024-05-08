@@ -1,3 +1,4 @@
+import { ModalsProvider } from "@/contexts/Modals.context";
 import { OrdersProvider } from "@/contexts/Orders.context";
 import { RidersProvider } from "@/contexts/Riders.context";
 import "@/styles/globals.scss";
@@ -7,7 +8,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <OrdersProvider>
       <RidersProvider>
-        <Component {...pageProps} />
+        <ModalsProvider>
+          <Component {...pageProps} />
+        </ModalsProvider>
       </RidersProvider>
     </OrdersProvider>
   );
