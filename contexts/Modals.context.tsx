@@ -2,7 +2,9 @@ import { ReactNode, createContext, useContext, useState } from "react";
 
 export type ModalsContextProps = {
   isModalOpen: boolean;
-  openModal: () => void;
+  state: string;
+  updateState: (actualState: string) => void;
+  openModal: (actualState: string) => void;
   closeModal: () => void;
 };
 
@@ -17,17 +19,23 @@ export type ModalsProviderProps = {
 
 export function ModalsProvider(props: ModalsProviderProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [state, setState] = useState("");
 
-  const openModal = () => {
+  const openModal = (actualState: string) => {
+    setState(actualState);
     setIsModalOpen(true);
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+  const updateState = (actualState: string) => {
+    setState(actualState);
   };
 
   const context = {
     isModalOpen,
+    state,
+    updateState,
     openModal,
     closeModal,
   };

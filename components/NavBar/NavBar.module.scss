@@ -1,0 +1,51 @@
+@import "/styles/variables.scss";
+
+.pk-layout {
+  width: 100dvw;
+  height: 100dvh;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  &__navbar {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    // flex-direction: column;
+    gap: 8px;
+    justify-content: space-between;
+    border-bottom: 1px solid $gray-900;
+    align-items: center;
+  }
+  &__logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  &__app {
+    display: grid;
+    display: grid;
+    width: 100%;
+    height: 100dvb;
+    grid-template-columns: auto 360px;
+    gap: 20px;
+    background-color: $gray-1000;
+  }
+}
+
+.pk-layout__buttons {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+}
+.pk-button {
+  padding: 10px;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+.pk-button:hover {
+  cursor: pointer;
+  transform: scale(95%);
+}
