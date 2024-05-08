@@ -17,9 +17,15 @@ export default function Modal(props: ModalProps) {
         <div className={s["pk-overlay"]} onClick={closeModal}>
           <div className={s["pk-modal"]} onClick={(e) => e.stopPropagation()}>
             <button className={s["pk-closeButton"]}>X</button>
-            {state === "PENDING" && <h1>Pending</h1>}
+
+            {state === "PENDING" && (
+              <div>
+                <h1>Pending</h1>
+              </div>
+            )}
             {state === "IN_PROGRESS" && <h1>In progress</h1>}
-            {state === "DELIVERED" && <h1>Ready</h1>}
+            {state === "READY" && <h1>Ready</h1>}
+            {state === "DELIVERED" && <h1>Delivered</h1>}
           </div>
         </div>
       ) : (

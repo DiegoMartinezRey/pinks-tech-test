@@ -1,3 +1,4 @@
+import { useModals } from "@/contexts/Modals.context";
 import { useOrders } from "@/contexts/Orders.context";
 import { Order } from "@/dtos/Order.dto";
 import { useEffect } from "react";
@@ -12,6 +13,7 @@ export type ColumnProps = {
 
 export default function Column(props: ColumnProps) {
   const { updateOrderStatus } = useOrders();
+  const { openModal } = useModals();
 
   useEffect(() => {}, [props.orders]);
 
@@ -21,6 +23,13 @@ export default function Column(props: ColumnProps) {
       updateOrderStatus(orderId, props.state);
     };
 
+  const handleClick = (order: Order) => {
+    if (props.onClick) {
+      props.onClick(order);
+    }
+    openModal(props.state);
+  };
+
   return (
     <div className={s["pk-column"]}>
       <div className={s["pk-column__title"]}>
@@ -28,7 +37,7 @@ export default function Column(props: ColumnProps) {
       </div>
       {props.orders.map((order) => (
         <div
-          onClick={() => props.onClick && props.onClick(order)}
+          onClick={() => handleClick(order)}
           className={s["pk-card"]}
           key={order.id}
         >
@@ -45,7 +54,11 @@ export default function Column(props: ColumnProps) {
               </div>
             ))}
           </div>
-          <button onClick={updateOrderStatusButton(order.id)}>Next</button>
+          {order.state === "READY" ? (
+            <></>
+          ) : (
+            <button onClick={updateOrderStatusButton(order.id)}>Next</button>
+          )}
         </div>
       ))}
     </div>

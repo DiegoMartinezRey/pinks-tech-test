@@ -20,26 +20,29 @@ export default function Kanban() {
   //   setSelectedOrder(null);
   //   setIsModalOpen(false);
   // };
+  const handleClick = (order: Order) => {
+    console.log("order: ", order);
+  };
 
   return (
     <section className={s["pk-kanban"]}>
       <Column
         title="Pendiente"
         orders={orders.filter((i) => i.state === "PENDING")}
-        state="IN_PROGRESS"
-        onClick={() => openModal("PENDING")}
+        state="PENDING"
+        onClick={handleClick}
       />
       <Column
         title="En preparación"
         orders={orders.filter((i) => i.state === "IN_PROGRESS")}
-        state="READY"
-        onClick={() => openModal("IN_PROGRESS")}
+        state="IN_PROGRESS"
+        onClick={handleClick}
       />
       <Column
         title="Listo"
         orders={orders.filter((i) => i.state === "READY")}
-        state="DELIVERED"
-        onClick={() => openModal("READY")}
+        state="READY"
+        onClick={handleClick}
       />
     </section>
   );
