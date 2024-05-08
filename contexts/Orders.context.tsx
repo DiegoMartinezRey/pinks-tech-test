@@ -52,9 +52,12 @@ export function OrdersProvider(props: OrdersProviderProps) {
   };
 
   const pickup = (order: Order) => {
-    alert(
-      "necesitamos eliminar del kanban a la orden recogida! Rapido! antes que nuestra gente de tienda se confunda!"
-    );
+    if (order.state === "READY") {
+      updateOrderStatus(order.id, "DELIVERED");
+      console.log("order: ", order);
+    } else {
+      alert("La orden aun no esta lista");
+    }
   };
 
   const context = {
