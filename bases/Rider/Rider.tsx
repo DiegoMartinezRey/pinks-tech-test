@@ -12,7 +12,7 @@ export default function Rider(props: RiderProps) {
 
   return (
     <div onClick={() => setPickup()} className={s["pk-rider__container"]}>
-      <div className={s["pk-rider__order"]}>
+      <div className={`${s["pk-rider__order"]}`}>
         <b>{props.orderWanted} !!</b>
       </div>
       <svg
