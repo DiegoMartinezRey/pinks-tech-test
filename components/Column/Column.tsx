@@ -54,18 +54,14 @@ export default function Column(props: ColumnProps) {
             className={s["pk-card"]}
             key={order.id}
           >
-            <div>
+            <div className={s["pk-card__column"]}>
               <span>
-                orden: <b>{order.id}</b>
+                Orden: <b>{order.id}</b>
               </span>
-              <div>
-                <h3>{order.state}</h3>
-                {order.items.map((item) => (
-                  <div key={item.id}>
-                    <h1>{item.name}</h1>
-                  </div>
-                ))}
-              </div>
+              <span>
+                Num items: <b>{order.items.length}</b>
+              </span>
+              <span>Haz click para mas detalles</span>
             </div>
             <div className={s["pk-rider"]}>
               {orderRiders[order.id] && (
