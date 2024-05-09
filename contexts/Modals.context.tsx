@@ -6,7 +6,7 @@ export type ModalsContextProps = {
   state: string;
   orderModal: Order | null;
   updateState: (actualState: string) => void;
-  openModal: (actualState: string, actualOrder?: Order) => void; // Hacer actualOrder opcional
+  openModal: (actualState: string, actualOrder?: Order) => void;
   closeModal: () => void;
 };
 

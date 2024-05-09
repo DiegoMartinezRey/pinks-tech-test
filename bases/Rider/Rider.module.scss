@@ -31,14 +31,18 @@
   &__order {
     position: absolute;
     top: -5px;
-    right: -15px;
+    right: -20px;
     opacity: 0;
     border-radius: 10px 10px 10px 0px;
     background-color: gray;
     padding: 8px;
     animation: appear 300ms 1000ms forwards;
-    &__available {
+    &__wait {
       background-color: #f9cc01;
+    }
+    &__available {
+      color: white;
+      background-color: green;
     }
   }
   animation: animation 1000ms;

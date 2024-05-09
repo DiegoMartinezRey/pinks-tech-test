@@ -88,6 +88,7 @@ export default function Column(props: ColumnProps) {
             <div className={s["pk-rider"]}>
               {orderRiders[order.id] && (
                 <Rider
+                  order={order}
                   rider={orderRiders[order.id]}
                   onClick={(e) => e.stopPropagation()}
                 />
