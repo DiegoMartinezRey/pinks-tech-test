@@ -1,19 +1,43 @@
 import { useOrders } from "@/contexts/Orders.context";
-import { Rider as RiderProps } from "@/dtos/Rider.dto";
+import { Rider as RiderProp } from "@/dtos/Rider.dto";
+import { useEffect, useState } from "react";
 import s from "./Rider.module.scss";
+
+export type RiderProps = {
+  rider: RiderProp;
+  // children?: React.ReactNode;
+};
 
 export default function Rider(props: RiderProps) {
   const { orders, pickup } = useOrders();
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    isOrderReady();
+  }, [orders]);
+
+  const isOrderReady = () => {
+    const order = orders.find((order) => order.id === props.rider.orderWanted);
+    if (order?.state === "READY") {
+      setReady(true);
+    } else {
+      setReady(false);
+    }
+  };
 
   const setPickup = () => {
-    const order = orders.find((order) => order.id === props.orderWanted);
-    props.pickup(order);
+    const order = orders.find((order) => order.id === props.rider.orderWanted);
+    props.rider.pickup(order);
   };
 
   return (
     <div onClick={() => setPickup()} className={s["pk-rider__container"]}>
-      <div className={`${s["pk-rider__order"]}`}>
-        <b>{props.orderWanted} !!</b>
+      <div
+        className={`${ready ? s["pk-rider__order__available"] : ""} ${
+          s["pk-rider__order"]
+        }`}
+      >
+        <b>{props.rider.orderWanted} !!</b>
       </div>
       <svg
         className={s["pk-rider"]}

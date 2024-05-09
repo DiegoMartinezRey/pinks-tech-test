@@ -1,7 +1,8 @@
 @import "/styles/variables.scss";
 
 .pk-column {
-  width: 320px;
+  // width: 320px;
+  flex: 1;
   height: max-content;
   max-height: 90vh;
   overflow: auto;

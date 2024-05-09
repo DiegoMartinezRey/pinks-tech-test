@@ -1,7 +1,10 @@
+import Rider from "@/bases/Rider";
 import { useModals } from "@/contexts/Modals.context";
 import { useOrders } from "@/contexts/Orders.context";
+import { useRiders } from "@/contexts/Riders.context";
 import { Order } from "@/dtos/Order.dto";
-import { useEffect } from "react";
+import { Rider as RiderDtos } from "@/dtos/Rider.dto";
+import { useEffect, useState } from "react";
 import s from "./Column.module.scss";
 
 export type ColumnProps = {
@@ -14,13 +17,35 @@ export type ColumnProps = {
 export default function Column(props: ColumnProps) {
   const { updateOrderStatus } = useOrders();
   const { openModal } = useModals();
+  const { riders } = useRiders();
+  const [orderRiders, setOrderRiders] = useState<{
+    [orderId: string]: RiderDtos;
+  }>({});
 
-  useEffect(() => {}, [props.orders]);
+  useEffect(() => {
+    setOrderOfRiders();
+  }, [props.orders, riders]);
+
+  const setOrderOfRiders = () => {
+    const orderRidersMap: { [orderId: string]: RiderDtos } = {};
+    props.orders.forEach((order) => {
+      const rider = riders.find((rider) => rider.orderWanted === order.id);
+      if (rider) {
+        orderRidersMap[order.id] = rider;
+      }
+    });
+    setOrderRiders(orderRidersMap);
+  };
 
   const updateOrderStatusButton =
-    (orderId: string) => (e: React.MouseEvent<HTMLButtonElement>) => {
+    (order: Order) => (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
-      updateOrderStatus(orderId, props.state);
+      if (order.state === "PENDING") {
+        updateOrderStatus(order.id, "IN_PROGRESS");
+      } else if (order.state === "IN_PROGRESS") {
+        updateOrderStatus(order.id, "READY");
+      } else if (order.state === "READY") {
+      }
     };
 
   const handleClick = (order: Order) => {
@@ -28,6 +53,7 @@ export default function Column(props: ColumnProps) {
       props.onClick(order);
     }
     openModal(props.state);
+    console.log(orderRiders);
   };
 
   return (
@@ -45,6 +71,12 @@ export default function Column(props: ColumnProps) {
             <span>
               orden: <b>{order.id}</b>
             </span>
+            {orderRiders[order.id] && (
+              <span>
+                Jinete: <b>{orderRiders[order.id].orderWanted}</b>
+                <Rider rider={orderRiders[order.id]} />
+              </span>
+            )}
           </div>
           <div>
             <h3>{order.state}</h3>
@@ -57,7 +89,7 @@ export default function Column(props: ColumnProps) {
           {order.state === "READY" ? (
             <></>
           ) : (
-            <button onClick={updateOrderStatusButton(order.id)}>Next</button>
+            <button onClick={updateOrderStatusButton(order)}>Next</button>
           )}
         </div>
       ))}
