@@ -20,7 +20,7 @@ export class OrderOrchestrator {
           {
             id: "1",
             name: "burger",
-            image: "photo1",
+            image: "/pinks_image.png",
             price: {
               currency: "€",
               amount: 20,

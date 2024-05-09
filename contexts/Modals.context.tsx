@@ -1,10 +1,12 @@
+import { Order } from "@/dtos/Order.dto";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 export type ModalsContextProps = {
   isModalOpen: boolean;
   state: string;
+  orderModal: Order | null;
   updateState: (actualState: string) => void;
-  openModal: (actualState: string) => void;
+  openModal: (actualState: string, actualOrder?: Order) => void; // Hacer actualOrder opcional
   closeModal: () => void;
 };
 
@@ -20,10 +22,14 @@ export type ModalsProviderProps = {
 export function ModalsProvider(props: ModalsProviderProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [state, setState] = useState("");
+  const [orderModal, setOrderModal] = useState<Order | null>(null);
 
-  const openModal = (actualState: string) => {
+  const openModal = (actualState: string, actualOrder?: Order) => {
     setState(actualState);
     setIsModalOpen(true);
+    if (actualOrder) {
+      setOrderModal(actualOrder);
+    }
   };
   const closeModal = () => {
     setIsModalOpen(false);
@@ -35,6 +41,7 @@ export function ModalsProvider(props: ModalsProviderProps) {
   const context = {
     isModalOpen,
     state,
+    orderModal,
     updateState,
     openModal,
     closeModal,

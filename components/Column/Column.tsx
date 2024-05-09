@@ -52,8 +52,7 @@ export default function Column(props: ColumnProps) {
     if (props.onClick) {
       props.onClick(order);
     }
-    openModal(props.state);
-    console.log(orderRiders);
+    openModal(props.state, order);
   };
 
   return (
