@@ -7,7 +7,6 @@ export type RiderProps = {
   order: Order;
   rider: RiderProp;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  // children?: React.ReactNode;
 };
 
 export default function Rider(props: RiderProps) {
@@ -550,6 +549,7 @@ export default function Rider(props: RiderProps) {
           ></path>
         </g>
       </svg>
+      <h5 className={s["pk-rider__orderwanted"]}>{props.rider.orderWanted}</h5>
     </div>
   );
 }

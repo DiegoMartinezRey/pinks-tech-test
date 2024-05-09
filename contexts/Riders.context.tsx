@@ -29,12 +29,10 @@ export function RidersProvider(props: RidersProviderProps) {
 
   useEffect(() => {
     showRiders();
-    console.log(assignedOrders);
   }, [orders]);
 
   const showRiders = () => {
     const order = orders.find((order) => !assignedOrders.includes(order.id));
-    console.log("click");
     if (order) {
       setAssignedOrders((prev) => [...prev, order.id]);
       setTimeout(() => {

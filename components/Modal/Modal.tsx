@@ -3,12 +3,7 @@ import { useOrders } from "@/contexts/Orders.context";
 import { Order } from "@/dtos/Order.dto";
 import s from "./Modal.module.scss";
 
-export type ModalProps = {
-  // onClose: () => void;
-  // children?: React.ReactNode;
-};
-
-export default function Modal(props: ModalProps) {
+export default function Modal() {
   const { updateOrderStatus } = useOrders();
   const { isModalOpen, orderModal, closeModal } = useModals();
 

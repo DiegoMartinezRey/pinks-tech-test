@@ -54,7 +54,6 @@ export function OrdersProvider(props: OrdersProviderProps) {
   const pickup = (order: Order) => {
     if (order.state === "READY") {
       updateOrderStatus(order.id, "DELIVERED");
-      console.log("order: ", order);
     }
   };
 
