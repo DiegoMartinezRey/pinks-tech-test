@@ -35,15 +35,42 @@
 }
 
 .pk-detail {
-  display: flex;
-  gap: 25px;
+  margin: 0 20px;
+  &__list {
+    display: flex;
+    gap: 15px;
+    padding: 100px;
+  }
   &__items {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 5px;
+  }
+  &__name {
+    font-weight: normal;
+  }
+  &__info {
+    font-weight: bold;
   }
   &__image {
     width: 80%;
-    padding: 25px 10px;
+    padding: 20px 10px;
+    border-radius: 15%;
+  }
+  &__button {
+    margin: 30px;
+    padding: 10px 20px;
+    border: solid black 2px;
+    border-radius: 15px;
+    font-size: 18pt;
+    font-weight: 500;
+    &__wait {
+      color: black;
+      background-color: rgb(255, 217, 0);
+    }
+    &__done {
+      color: white;
+      background-color: green;
+    }
   }
 }

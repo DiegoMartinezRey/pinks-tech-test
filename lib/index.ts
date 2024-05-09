@@ -19,11 +19,20 @@ export class OrderOrchestrator {
         items: [
           {
             id: "1",
-            name: "burger",
+            name: "Hamburguesa",
+            image: "/combo_image.jpg",
+            price: {
+              currency: "€",
+              amount: 15,
+            },
+          },
+          {
+            id: "2",
+            name: "Soda",
             image: "/pinks_image.png",
             price: {
               currency: "€",
-              amount: 20,
+              amount: 3.45,
             },
           },
         ],

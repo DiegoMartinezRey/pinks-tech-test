@@ -79,11 +79,11 @@ export default function Column(props: ColumnProps) {
                   </div>
                 ))}
               </div>
-              {order.state === "READY" ? (
+              {/* {order.state === "READY" ? (
                 <></>
               ) : (
                 <button onClick={updateOrderStatusButton(order)}>Next</button>
-              )}
+              )} */}
             </div>
             <div className={s["pk-rider"]}>
               {orderRiders[order.id] && (

@@ -1,5 +1,6 @@
 import { useModals } from "@/contexts/Modals.context";
 import { useOrders } from "@/contexts/Orders.context";
+import { Order } from "@/dtos/Order.dto";
 import s from "./Modal.module.scss";
 
 export type ModalProps = {
@@ -8,48 +9,79 @@ export type ModalProps = {
 };
 
 export default function Modal(props: ModalProps) {
-  const { orders } = useOrders();
-  const { isModalOpen, state, orderModal, closeModal } = useModals();
+  const { updateOrderStatus } = useOrders();
+  const { isModalOpen, orderModal, closeModal } = useModals();
+
+  const updateStatus = (order: Order) => {
+    closeModal();
+    if (order.state === "PENDING") {
+      updateOrderStatus(order.id, "IN_PROGRESS");
+    } else if (order.state === "IN_PROGRESS") {
+      updateOrderStatus(order.id, "READY");
+    } else if (order.state === "READY") {
+    }
+  };
 
   return (
     <>
-      {isModalOpen ? (
+      {isModalOpen && orderModal ? (
         <div className={s["pk-overlay"]} onClick={closeModal}>
           <div className={s["pk-modal"]} onClick={(e) => e.stopPropagation()}>
             <h1>Detalles de la orden</h1>
-            <h2>
-              No. de orden: <span>{orderModal?.id}</span>
+            <h2 className={s["pk-detail__name"]}>
+              No. de orden:{" "}
+              <span className={s["pk-detail__info"]}>{orderModal?.id}</span>
             </h2>
-            <h2>
-              Estado de la orden: <span>{orderModal?.state}</span>
+            <h2 className={s["pk-detail__name"]}>
+              Estado de la orden:{" "}
+              <span className={s["pk-detail__info"]}>{orderModal?.state}</span>
             </h2>
             <h2>Items:</h2>
-            <ul>
+            <ul className={s["pk-detail"]}>
               {orderModal?.items.map((item) => (
-                <li className={s["pk-detail"]} key={item.id}>
+                <li className={s["pk-detail__list"]} key={item.id}>
                   <div>
                     <h3>{item.id}.</h3>
                   </div>
                   <div className={s["pk-detail__items"]}>
-                    <h3>
-                      Producto: <span>{item.name}</span>
+                    <h3 className={s["pk-detail__name"]}>
+                      Producto:{" "}
+                      <span className={s["pk-detail__info"]}>{item.name}</span>
                     </h3>
-                    <h3>
-                      Precio: <span>{item.price.amount}</span>
+                    <h3 className={s["pk-detail__name"]}>
+                      Precio:{" "}
+                      <span className={s["pk-detail__info"]}>
+                        {item.price.amount}
+                      </span>
                     </h3>
-                    <h3>
-                      Moneda: <span>{item.price.currency}</span>
+                    <h3 className={s["pk-detail__name"]}>
+                      Moneda:{" "}
+                      <span className={s["pk-detail__info"]}>
+                        {item.price.currency}
+                      </span>
                     </h3>
-                    <h3>Imagen: </h3>
+                    <h3 className={s["pk-detail__name"]}>Imagen: </h3>
                     <img
+                      className={s["pk-detail__image"]}
                       src={item.image}
                       alt={item.name}
-                      className={s["pk-detail__image"]}
                     />
                   </div>
                 </li>
               ))}
             </ul>
+            <button
+              className={`${s["pk-detail__button"]} 
+              ${orderModal.state === "PENDING" && s["pk-detail__button__wait"]}
+              ${
+                orderModal.state === "IN_PROGRESS" &&
+                s["pk-detail__button__done"]
+              }`}
+              onClick={() => updateStatus(orderModal)}
+            >
+              {orderModal.state === "PENDING" && <>Preparar pedido</>}
+              {orderModal.state === "IN_PROGRESS" && <>Pedido listo</>}
+            </button>
           </div>
         </div>
       ) : (
