@@ -9,10 +9,9 @@
   justify-content: flex-start;
   align-items: flex-start;
   &__app {
-    display: grid;
     width: 100%;
     height: 100dvb;
-    grid-template-columns: auto 360px;
+    display: flex;
     gap: 20px;
     background-color: $gray-1000;
   }

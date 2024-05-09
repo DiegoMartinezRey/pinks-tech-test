@@ -71,26 +71,28 @@ export default function Column(props: ColumnProps) {
             <span>
               orden: <b>{order.id}</b>
             </span>
-            {orderRiders[order.id] && (
-              <span>
-                Jinete: <b>{orderRiders[order.id].orderWanted}</b>
-                <Rider rider={orderRiders[order.id]} />
-              </span>
+            <div>
+              <h3>{order.state}</h3>
+              {order.items.map((item) => (
+                <div key={item.id}>
+                  <h1>{item.name}</h1>
+                </div>
+              ))}
+            </div>
+            {order.state === "READY" ? (
+              <></>
+            ) : (
+              <button onClick={updateOrderStatusButton(order)}>Next</button>
             )}
           </div>
-          <div>
-            <h3>{order.state}</h3>
-            {order.items.map((item) => (
-              <div key={item.id}>
-                <h1>{item.name}</h1>
-              </div>
-            ))}
+          <div className={s["pk-rider"]}>
+            {orderRiders[order.id] && (
+              <Rider
+                rider={orderRiders[order.id]}
+                onClick={(e) => e.stopPropagation()}
+              />
+            )}
           </div>
-          {order.state === "READY" ? (
-            <></>
-          ) : (
-            <button onClick={updateOrderStatusButton(order)}>Next</button>
-          )}
         </div>
       ))}
     </div>

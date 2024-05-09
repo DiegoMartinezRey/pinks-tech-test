@@ -31,11 +31,11 @@
   &__order {
     position: absolute;
     top: -5px;
-    right: -35px;
+    right: -15px;
     opacity: 0;
     border-radius: 10px 10px 10px 0px;
     background-color: gray;
-    padding: 10px;
+    padding: 8px;
     animation: appear 300ms 1000ms forwards;
     &__available {
       background-color: #f9cc01;

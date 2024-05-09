@@ -5,6 +5,7 @@ import s from "./Rider.module.scss";
 
 export type RiderProps = {
   rider: RiderProp;
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   // children?: React.ReactNode;
 };
 
@@ -25,19 +26,22 @@ export default function Rider(props: RiderProps) {
     }
   };
 
-  const setPickup = () => {
+  const setPickup = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (props.onClick) {
+      props.onClick(e); // Llama al manejador de clic proporcionado por el padre, si existe
+    }
     const order = orders.find((order) => order.id === props.rider.orderWanted);
     props.rider.pickup(order);
   };
 
   return (
-    <div onClick={() => setPickup()} className={s["pk-rider__container"]}>
+    <div onClick={setPickup} className={s["pk-rider__container"]}>
       <div
         className={`${ready ? s["pk-rider__order__available"] : ""} ${
           s["pk-rider__order"]
         }`}
       >
-        <b>{props.rider.orderWanted} !!</b>
+        <b>{props.rider.orderWanted}</b>
       </div>
       <svg
         className={s["pk-rider"]}
