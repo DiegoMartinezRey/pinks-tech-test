@@ -1,6 +1,5 @@
 import Rider from "@/bases/Rider";
 import { useModals } from "@/contexts/Modals.context";
-import { useOrders } from "@/contexts/Orders.context";
 import { useRiders } from "@/contexts/Riders.context";
 import { Order } from "@/dtos/Order.dto";
 import { Rider as RiderDtos } from "@/dtos/Rider.dto";
@@ -15,7 +14,6 @@ export type ColumnProps = {
 };
 
 export default function Column(props: ColumnProps) {
-  const { updateOrderStatus } = useOrders();
   const { openModal } = useModals();
   const { riders } = useRiders();
   const [orderRiders, setOrderRiders] = useState<{
@@ -36,17 +34,6 @@ export default function Column(props: ColumnProps) {
     });
     setOrderRiders(orderRidersMap);
   };
-
-  const updateOrderStatusButton =
-    (order: Order) => (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      if (order.state === "PENDING") {
-        updateOrderStatus(order.id, "IN_PROGRESS");
-      } else if (order.state === "IN_PROGRESS") {
-        updateOrderStatus(order.id, "READY");
-      } else if (order.state === "READY") {
-      }
-    };
 
   const handleClick = (order: Order) => {
     if (props.onClick) {
@@ -79,11 +66,6 @@ export default function Column(props: ColumnProps) {
                   </div>
                 ))}
               </div>
-              {/* {order.state === "READY" ? (
-                <></>
-              ) : (
-                <button onClick={updateOrderStatusButton(order)}>Next</button>
-              )} */}
             </div>
             <div className={s["pk-rider"]}>
               {orderRiders[order.id] && (

@@ -3,7 +3,7 @@
 .pk-column {
   // width: 320px;
   flex: 1;
-  min-width: 270px;
+  min-width: 180px;
   height: max-content;
   max-height: 90vh;
   overflow: auto;
@@ -15,7 +15,6 @@
   grid-template-columns: 100%;
   gap: 12px;
   background-color: $gray-900;
-
   &__title {
     padding: 10px;
     & > h3 {
@@ -36,6 +35,7 @@
 .pk-card {
   flex: 1;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   background-color: #fff;
   border: 1px solid $gray-1000;

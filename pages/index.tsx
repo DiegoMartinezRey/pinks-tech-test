@@ -7,7 +7,6 @@ export default function Index() {
     <>
       <OrdersLayout>
         <Kanban />
-        {/* <Riders /> */}
         <Modal />
       </OrdersLayout>
     </>

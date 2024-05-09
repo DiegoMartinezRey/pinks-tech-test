@@ -9,9 +9,7 @@ const OrdersLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <main className={s["pk-layout"]}>
       <NavBar />
-      <article className={s["pk-layout__app"]}>
-        <main>{children}</main>
-      </article>
+      <article className={s["pk-layout__app"]}>{children}</article>
     </main>
   );
 };

@@ -1,7 +1,6 @@
 import { useOrders } from "@/contexts/Orders.context";
 import { Order } from "@/dtos/Order.dto";
 import { Rider as RiderProp } from "@/dtos/Rider.dto";
-import { useEffect, useState } from "react";
 import s from "./Rider.module.scss";
 
 export type RiderProps = {
@@ -12,21 +11,7 @@ export type RiderProps = {
 };
 
 export default function Rider(props: RiderProps) {
-  const { orders, pickup } = useOrders();
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    isOrderReady();
-  }, [orders]);
-
-  const isOrderReady = () => {
-    const order = orders.find((order) => order.id === props.rider.orderWanted);
-    if (order?.state === "READY") {
-      setReady(true);
-    } else {
-      setReady(false);
-    }
-  };
+  const { orders } = useOrders();
 
   const setPickup = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (props.onClick) {
