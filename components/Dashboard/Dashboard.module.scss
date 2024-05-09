@@ -8,6 +8,18 @@
   padding: 30px;
 }
 
+.pk-filter {
+  margin: 20px 0 0 0;
+  &__label {
+    font-weight: normal;
+  }
+  &__input {
+    padding: 5px;
+    border: solid black 1px;
+    border-radius: 10px;
+  }
+}
+
 .pk-panel {
   width: 100%;
   max-width: 700px;
