@@ -15,13 +15,13 @@ export default function NavBar() {
       </div>
       <div className={s["pk-layout__buttons"]}>
         <button className={s["pk-button"]} onClick={() => router.push("/")}>
-          Ordenes
+          Inicio
         </button>
         <button
           className={s["pk-button"]}
           onClick={() => router.push("/history")}
         >
-          Hitorial
+          Historial
         </button>
       </div>
     </nav>

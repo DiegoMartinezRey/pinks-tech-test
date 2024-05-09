@@ -14,7 +14,7 @@ export default function Rider(props: RiderProps) {
   const { orders } = useOrders();
 
   const setPickup = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (props.onClick) {
+    if (props.onClick && props.order.state === "READY") {
       props.onClick(e);
     }
     const order = orders.find((order) => order.id === props.rider.orderWanted);
@@ -22,7 +22,14 @@ export default function Rider(props: RiderProps) {
   };
 
   return (
-    <div onClick={setPickup} className={s["pk-rider__container"]}>
+    <div
+      onClick={setPickup}
+      className={
+        !(props.order.state === "READY")
+          ? s["pk-rider__container_disable"]
+          : s["pk-rider__container"]
+      }
+    >
       <div
         className={`
         ${props.order.state === "IN_PROGRESS" && s["pk-rider__order__wait"]}

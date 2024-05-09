@@ -22,11 +22,18 @@
     width: 100px;
     height: 100px;
     position: relative;
+    transition: all 0.2s ease-in-out;
     &:hover {
       opacity: 0.8;
-      transform: scale(0.98);
+      transform: scale(1.03);
       cursor: pointer;
     }
+  }
+  &__container_disable {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    transition: all 0.2s ease-in-out;
   }
   &__order {
     position: absolute;

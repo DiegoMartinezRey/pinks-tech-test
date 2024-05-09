@@ -55,8 +55,6 @@ export function OrdersProvider(props: OrdersProviderProps) {
     if (order.state === "READY") {
       updateOrderStatus(order.id, "DELIVERED");
       console.log("order: ", order);
-    } else {
-      alert("La orden aun no esta lista");
     }
   };
 

@@ -19,13 +19,17 @@
   flex-direction: column;
   gap: 10px;
   background-color: white;
-  width: 50%;
+  width: 40%;
   min-width: 230px;
-  padding: 30px;
+  padding: 50px 60px;
   border-radius: 20px;
   max-width: 80%;
   max-height: 80%;
   overflow: auto;
+}
+.pk-modal > h1 {
+  font-size: 20pt;
+  margin-bottom: 10px;
 }
 
 .pk-closeButton {
@@ -59,11 +63,13 @@
   }
   &__button {
     width: 50%;
-    padding: 8px 20px;
+    padding: 8px 10px;
+    margin-top: 30px;
     border: solid black 2px;
     border-radius: 15px;
-    font-size: 16pt;
+    font-size: 14pt;
     font-weight: 500;
+    cursor: pointer;
     &_group {
       display: flex;
       justify-content: center;
@@ -77,4 +83,11 @@
       background-color: green;
     }
   }
+}
+
+.pk-note {
+  margin-top: 40px;
+  text-align: center;
+  font-style: italic;
+  color: gray;
 }

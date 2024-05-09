@@ -51,12 +51,14 @@ export default function Column(props: ColumnProps) {
         {props.orders.map((order) => (
           <div
             onClick={() => handleClick(order)}
-            className={s["pk-card"]}
+            className={`${!(order.state === "READY") && s["pk-card__hover"]} ${
+              s["pk-card"]
+            }`}
             key={order.id}
           >
             <div className={s["pk-card__column"]}>
               <span>
-                Orden: <b>{order.id}</b>
+                Orden: <b className={s["pk-card__order"]}>{order.id}</b>
               </span>
               <span>
                 Num items: <b>{order.items.length}</b>

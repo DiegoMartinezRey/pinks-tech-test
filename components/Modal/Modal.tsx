@@ -28,15 +28,17 @@ export default function Modal(props: ModalProps) {
         <div className={s["pk-overlay"]} onClick={closeModal}>
           <div className={s["pk-modal"]} onClick={(e) => e.stopPropagation()}>
             <h1>Detalles de la orden</h1>
-            <h2 className={s["pk-detail__name"]}>
+            <h3 className={s["pk-detail__name"]}>
               No. de orden:{" "}
               <span className={s["pk-detail__info"]}>{orderModal?.id}</span>
-            </h2>
-            <h2 className={s["pk-detail__name"]}>
+            </h3>
+            <h3 className={s["pk-detail__name"]}>
               Estado de la orden:{" "}
               <span className={s["pk-detail__info"]}>{orderModal?.state}</span>
-            </h2>
-            <h2>Items:</h2>
+            </h3>
+            <h3>
+              <b>Items:</b>
+            </h3>
             <ul className={s["pk-detail"]}>
               {orderModal?.items.map((item) => (
                 <li className={s["pk-detail__list"]} key={item.id}>
@@ -71,7 +73,7 @@ export default function Modal(props: ModalProps) {
               ))}
             </ul>
             <div className={s["pk-detail__button_group"]}>
-              {!(orderModal.state === "READY") && (
+              {!(orderModal.state === "READY") ? (
                 <button
                   className={`${s["pk-detail__button"]} 
               ${orderModal.state === "PENDING" && s["pk-detail__button__wait"]}
@@ -84,6 +86,11 @@ export default function Modal(props: ModalProps) {
                   {orderModal.state === "PENDING" && <>Preparar pedido</>}
                   {orderModal.state === "IN_PROGRESS" && <>Pedido listo</>}
                 </button>
+              ) : (
+                <h3 className={s["pk-note"]}>
+                  Al tener lista la orden dale click al repartidor para
+                  entregarle los productos
+                </h3>
               )}
             </div>
           </div>
