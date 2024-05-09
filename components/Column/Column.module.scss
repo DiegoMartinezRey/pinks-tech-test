@@ -25,8 +25,16 @@
   }
 }
 
-.pk-card {
+.pk-card__flex {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
+}
+
+.pk-card {
+  flex: 1;
   display: flex;
   justify-content: space-between;
   background-color: #fff;

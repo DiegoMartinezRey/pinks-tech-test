@@ -61,40 +61,42 @@ export default function Column(props: ColumnProps) {
       <div className={s["pk-column__title"]}>
         <h3>{props.title}</h3>
       </div>
-      {props.orders.map((order) => (
-        <div
-          onClick={() => handleClick(order)}
-          className={s["pk-card"]}
-          key={order.id}
-        >
-          <div>
-            <span>
-              orden: <b>{order.id}</b>
-            </span>
+      <div className={s["pk-card__flex"]}>
+        {props.orders.map((order) => (
+          <div
+            onClick={() => handleClick(order)}
+            className={s["pk-card"]}
+            key={order.id}
+          >
             <div>
-              <h3>{order.state}</h3>
-              {order.items.map((item) => (
-                <div key={item.id}>
-                  <h1>{item.name}</h1>
-                </div>
-              ))}
+              <span>
+                orden: <b>{order.id}</b>
+              </span>
+              <div>
+                <h3>{order.state}</h3>
+                {order.items.map((item) => (
+                  <div key={item.id}>
+                    <h1>{item.name}</h1>
+                  </div>
+                ))}
+              </div>
+              {order.state === "READY" ? (
+                <></>
+              ) : (
+                <button onClick={updateOrderStatusButton(order)}>Next</button>
+              )}
             </div>
-            {order.state === "READY" ? (
-              <></>
-            ) : (
-              <button onClick={updateOrderStatusButton(order)}>Next</button>
-            )}
+            <div className={s["pk-rider"]}>
+              {orderRiders[order.id] && (
+                <Rider
+                  rider={orderRiders[order.id]}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              )}
+            </div>
           </div>
-          <div className={s["pk-rider"]}>
-            {orderRiders[order.id] && (
-              <Rider
-                rider={orderRiders[order.id]}
-                onClick={(e) => e.stopPropagation()}
-              />
-            )}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
