@@ -70,18 +70,22 @@ export default function Modal(props: ModalProps) {
                 </li>
               ))}
             </ul>
-            <button
-              className={`${s["pk-detail__button"]} 
+            <div className={s["pk-detail__button_group"]}>
+              {!(orderModal.state === "READY") && (
+                <button
+                  className={`${s["pk-detail__button"]} 
               ${orderModal.state === "PENDING" && s["pk-detail__button__wait"]}
               ${
                 orderModal.state === "IN_PROGRESS" &&
                 s["pk-detail__button__done"]
               }`}
-              onClick={() => updateStatus(orderModal)}
-            >
-              {orderModal.state === "PENDING" && <>Preparar pedido</>}
-              {orderModal.state === "IN_PROGRESS" && <>Pedido listo</>}
-            </button>
+                  onClick={() => updateStatus(orderModal)}
+                >
+                  {orderModal.state === "PENDING" && <>Preparar pedido</>}
+                  {orderModal.state === "IN_PROGRESS" && <>Pedido listo</>}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       ) : (

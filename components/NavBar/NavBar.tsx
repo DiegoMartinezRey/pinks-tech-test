@@ -1,9 +1,11 @@
 import Logo from "@/bases/Logo";
 import { useModals } from "@/contexts/Modals.context";
+import { useRouter } from "next/router";
 import s from "./NavBar.module.scss";
 
 export default function NavBar() {
   const { openModal } = useModals();
+  const router = useRouter();
 
   return (
     <nav className={s["pk-layout__navbar"]}>
@@ -12,17 +14,14 @@ export default function NavBar() {
         <span>KDS: Krazy Display Service</span>
       </div>
       <div className={s["pk-layout__buttons"]}>
-        <button
-          className={s["pk-button"]}
-          onClick={() => openModal("DELIVERED")}
-        >
-          In progress
+        <button className={s["pk-button"]} onClick={() => router.push("/")}>
+          Ordenes
         </button>
         <button
           className={s["pk-button"]}
-          onClick={() => openModal("DELIVERED")}
+          onClick={() => router.push("/history")}
         >
-          Done
+          Hitorial
         </button>
       </div>
     </nav>

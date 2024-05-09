@@ -1,17 +1,19 @@
-import Kanban from "@/components/Kanban";
-import Modal from "@/components/Modal";
 import NavBar from "@/components/NavBar/NavBar";
 import s from "./OrdersLayout.module.scss";
 
-export default function OrdersLayout() {
+interface MainLayoutProps {
+  children: React.ReactNode;
+}
+
+const OrdersLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <main className={s["pk-layout"]}>
       <NavBar />
       <article className={s["pk-layout__app"]}>
-        <Kanban />
-        {/* <Riders /> */}
-        <Modal />
+        <main>{children}</main>
       </article>
     </main>
   );
-}
+};
+
+export default OrdersLayout;
