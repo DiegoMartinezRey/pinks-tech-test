@@ -17,7 +17,7 @@ export default function Dashboard() {
   const [filter, setFilter] = useState<string>("");
 
   const sumPrice = (items: Items[]) => {
-    return items.reduce((price, item) => price + item.price.amount, 0);
+    return (items.reduce((price, item) => price + item.price.amount, 0)).toFixed(2);
   };
 
   const filteredOrders = orders.filter((order) =>

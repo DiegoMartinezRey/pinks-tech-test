@@ -1,6 +1,11 @@
 import { Order } from "@/dtos/Order.dto";
 import { EventEmitter } from "events";
-import { getRandomId, getRandomInterval } from "./utils";
+import {
+  getRandomFood,
+  getRandomId,
+  getRandomInterval,
+  getRandomPriceAmount,
+} from "./utils";
 
 export class OrderOrchestrator {
   private interval: NodeJS.Timeout | undefined;
@@ -19,20 +24,20 @@ export class OrderOrchestrator {
         items: [
           {
             id: "1",
-            name: "Hamburguesa",
-            image: "/combo_image.jpg",
+            name: getRandomFood(),
+            image: "/pinks_image.png",
             price: {
               currency: "€",
-              amount: 15,
+              amount: getRandomPriceAmount(2, 15),
             },
           },
           {
             id: "2",
-            name: "Soda",
+            name: getRandomFood(),
             image: "/pinks_image.png",
             price: {
               currency: "€",
-              amount: 3.45,
+              amount: getRandomPriceAmount(2, 15),
             },
           },
         ],
